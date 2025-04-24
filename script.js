@@ -389,47 +389,71 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Get a hint (reveal one cell)
     function getHint() {
-        if (!solution) {
-            // We need to solve the puzzle first
-            solution = solveSudoku(currentGrid);
+        // Show a loading indicator on the hint button
+        const hintButton = document.getElementById('hint-button');
+        const originalButtonText = hintButton.innerHTML;
+        hintButton.innerHTML = '<span class="spinner"></span>Processing...';
+        hintButton.disabled = true;
 
-            if (!solution) {
-                showValidationMessage('Cannot provide hint - puzzle has no valid solution', false);
-                return;
-            }
-        }
+        // Use setTimeout to allow UI to update before running the computation
+        setTimeout(() => {
+            try {
+                if (!solution) {
+                    // We need to solve the puzzle first
+                    solution = solveSudoku(currentGrid);
 
-        // Find all empty cells in the current grid
-        const emptyCells = [];
-        for (let row = 0; row < 9; row++) {
-            for (let col = 0; col < 9; col++) {
-                if (currentGrid[row][col] === 0) {
-                    emptyCells.push([row, col]);
+                    if (!solution) {
+                        showValidationMessage('Cannot provide hint - puzzle has no valid solution', false);
+                        hintButton.innerHTML = originalButtonText;
+                        hintButton.disabled = false;
+                        return;
+                    }
                 }
+
+                // Find all empty cells in the current grid
+                const emptyCells = [];
+                for (let row = 0; row < 9; row++) {
+                    for (let col = 0; col < 9; col++) {
+                        if (currentGrid[row][col] === 0) {
+                            emptyCells.push([row, col]);
+                        }
+                    }
+                }
+
+                // If no empty cells, no hint needed
+                if (emptyCells.length === 0) {
+                    showToast('No hint available - puzzle is complete!');
+                    hintButton.innerHTML = originalButtonText;
+                    hintButton.disabled = false;
+                    return;
+                }
+
+                // Select a random empty cell to reveal
+                const randomIndex = Math.floor(Math.random() * emptyCells.length);
+                const [row, col] = emptyCells[randomIndex];
+
+                // Reveal the cell
+                const hintValue = solution[row][col];
+                currentGrid[row][col] = hintValue;
+                originalGrid[row][col] = hintValue;
+
+                // Update display and mark as a hint
+                updateGridDisplay();
+                const hintCell = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+                hintCell.classList.add('hint');
+
+                showToast(`Hint provided: ${hintValue} at row ${row + 1}, column ${col + 1}`);
+
+                // Restore button state
+                hintButton.innerHTML = originalButtonText;
+                hintButton.disabled = false;
+            } catch (error) {
+                console.error('Error generating hint:', error);
+                showToast('Error generating hint. Please try again.');
+                hintButton.innerHTML = originalButtonText;
+                hintButton.disabled = false;
             }
-        }
-
-        // If no empty cells, no hint needed
-        if (emptyCells.length === 0) {
-            showToast('No hint available - puzzle is complete!');
-            return;
-        }
-
-        // Select a random empty cell to reveal
-        const randomIndex = Math.floor(Math.random() * emptyCells.length);
-        const [row, col] = emptyCells[randomIndex];
-
-        // Reveal the cell
-        const hintValue = solution[row][col];
-        currentGrid[row][col] = hintValue;
-        originalGrid[row][col] = hintValue;
-
-        // Update display and mark as a hint
-        updateGridDisplay();
-        const hintCell = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
-        hintCell.classList.add('hint');
-
-        showToast(`Hint provided: ${hintValue} at row ${row + 1}, column ${col + 1}`);
+        }, 50); // Small delay to ensure UI updates
     }
 
     // Timer functions
@@ -504,35 +528,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Simple toast notification
     function showToast(message) {
+        const existingToast = document.querySelector('.toast');
+        if (existingToast) {
+            existingToast.remove();
+        }
+
+        // Create new toast
         const toast = document.createElement('div');
         toast.className = 'toast';
-        toast.style.position = 'fixed';
-        toast.style.bottom = '20px';
-        toast.style.left = '50%';
-        toast.style.transform = 'translateX(-50%)';
-        toast.style.backgroundColor = 'var(--primary)';
-        toast.style.color = 'white';
-        toast.style.padding = '12px 24px';
-        toast.style.borderRadius = '4px';
-        toast.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
-        toast.style.zIndex = '1000';
-        toast.style.opacity = '0';
-        toast.style.transition = 'opacity 0.3s ease-in-out';
         toast.textContent = message;
 
         document.body.appendChild(toast);
 
-        // Fade in
+        // Remove toast after animation completes
         setTimeout(() => {
-            toast.style.opacity = '1';
-        }, 10);
-
-        // Remove after 3 seconds
-        setTimeout(() => {
-            toast.style.opacity = '0';
-            setTimeout(() => {
-                document.body.removeChild(toast);
-            }, 300);
+            toast.remove();
         }, 3000);
     }
 
