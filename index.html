@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku Solver</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <div class="header-content">
+                <h1>Sudoku Solver</h1>
+                <div class="header-controls">
+                    <button id="theme-toggle" class="icon-button">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button id="info-button" class="icon-button">
+                        <i class="fas fa-info-circle"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="content-container">
+                <div class="left-panel">
+                    <div class="grid-header">
+                        <h2>Puzzle Grid</h2>
+                        <div id="validation-message"></div>
+                    </div>
+
+                    <div class="timer-container">
+                        <div id="timer">00:00</div>
+                        <div class="timer-controls">
+                            <button id="timer-toggle" class="icon-button small">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <button id="timer-reset" class="icon-button small">
+                                <i class="fas fa-undo"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="sudoku-grid" class="sudoku-grid"></div>
+
+                    <div class="number-pad">
+                        <button class="number-button" data-number="1">1</button>
+                        <button class="number-button" data-number="2">2</button>
+                        <button class="number-button" data-number="3">3</button>
+                        <button class="number-button" data-number="4">4</button>
+                        <button class="number-button" data-number="5">5</button>
+                        <button class="number-button" data-number="6">6</button>
+                        <button class="number-button" data-number="7">7</button>
+                        <button class="number-button" data-number="8">8</button>
+                        <button class="number-button" data-number="9">9</button>
+                        <button class="number-button delete-button" data-number="0">
+                            <i class="fas fa-backspace"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="right-panel">
+                    <div class="control-panel">
+                        <h2>Controls</h2>
+                        <div class="control-buttons">
+                            <button id="solve-button" class="control-button primary">Solve Puzzle</button>
+                            <button id="hint-button" class="control-button secondary">
+                                <i class="fas fa-lightbulb"></i> Get Hint
+                            </button>
+                            <button id="validate-button" class="control-button">Validate Puzzle</button>
+                            <button id="clear-button" class="control-button">Clear Board</button>
+                        </div>
+                    </div>
+
+                    <div class="sample-panel">
+                        <h2>Sample Puzzles</h2>
+                        <p class="hint-text">Choose difficulty:</p>
+                        <div class="difficulty-buttons">
+                            <button id="easy-button" class="difficulty-button">Easy</button>
+                            <button id="medium-button" class="difficulty-button">Medium</button>
+                            <button id="hard-button" class="difficulty-button">Hard</button>
+                        </div>
+                    </div>
+
+                    <div class="info-panel">
+                        <h2>How to Play</h2>
+                        <ol class="instructions">
+                            <li>Enter your puzzle or select a sample puzzle</li>
+                            <li>Use "Get Hint" if you're stuck on a puzzle</li>
+                            <li>Click "Validate" to check if your puzzle is valid</li>
+                            <li>Click "Solve" to find the solution automatically</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <p>&copy; <span id="current-year"></span> Sudoku Solver</p>
+                <div class="footer-links">
+                    <a href="#">About</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
+        </footer>
+
+        <div id="info-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h2>About Sudoku Solver</h2>
+                <p>
+                    Welcome to Sudoku Solver, an interactive tool for solving Sudoku puzzles.
+                </p>
+                <h3>Rules of Sudoku</h3>
+                <p>
+                    The goal of Sudoku is to fill a 9x9 grid with numbers so that each row, column,
+                    and 3x3 section contain all of the digits between 1 and 9.
+                </p>
+                <h3>Using the Solver</h3>
+                <ul>
+                    <li>Click on a cell and use the number pad to enter a value</li>
+                    <li>Use the Delete button or keyboard to clear a cell</li>
+                    <li>The "Validate" button checks if your puzzle is valid</li>
+                    <li>The "Solve" button automatically finds the solution</li>
+                    <li>Use "Get Hint" if you're stuck on a particular cell</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

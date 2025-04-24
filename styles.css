@@ -1,0 +1,521 @@
+/* Color variables */
+:root {
+    --primary: #2C3E50;
+    --secondary: #3498DB;
+    --background: #F7F9FC;
+    --grid-lines: #BDC3C7;
+    --accent: #E74C3C;
+    --text: #2C3E50;
+    --card-bg: #FFFFFF;
+    --border: #E2E8F0;
+    --box-shadow: rgba(0, 0, 0, 0.1);
+    --highlight: #F1C40F;
+    --success: #2ECC71;
+}
+
+/* Dark theme colors */
+.dark-theme {
+    --primary: #1A2530;
+    --secondary: #2980B9;
+    --background: #121212;
+    --grid-lines: #4B4B4B;
+    --text: #ECEFF4;
+    --card-bg: #1E1E1E;
+    --border: #333333;
+    --box-shadow: rgba(0, 0, 0, 0.3);
+}
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    background-color: var(--primary);
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px var(--box-shadow);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.header-controls {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Main content */
+main {
+    flex-grow: 1;
+    padding: 2rem 0;
+}
+
+.content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+    .content-container {
+        flex-direction: row;
+    }
+
+    .right-panel {
+        width: 100%;
+        max-width: 320px;
+    }
+
+}
+
+.left-panel {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.right-panel {
+    width: 100%;
+    /* max-width: 320px; */
+}
+
+/* Grid header and validation message */
+.grid-header {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 1.25rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+#validation-message {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.valid-message {
+    color: var(--success);
+}
+
+.invalid-message {
+    color: var(--accent);
+}
+
+/* Timer */
+.timer-container {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 0.5rem;
+}
+
+#timer {
+    font-family: monospace;
+    font-size: 1.2rem;
+    background-color: var(--card-bg);
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 1px 3px var(--box-shadow);
+}
+
+.timer-controls {
+    display: flex;
+    gap: 0.25rem;
+}
+
+/* Sudoku Grid */
+.sudoku-grid {
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 1 / 1;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    border: 2px solid var(--primary);
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 6px var(--box-shadow);
+}
+
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    border: 1px solid var(--grid-lines);
+    cursor: pointer;
+    user-select: none;
+    background-color: var(--card-bg);
+    transition: background-color 0.2s;
+}
+
+.cell:focus {
+    outline: none;
+}
+
+.cell.highlighted {
+    background-color: var(--secondary);
+    color: white;
+}
+
+.cell.prefilled {
+    font-weight: 700;
+}
+
+.cell.hint {
+    color: var(--secondary);
+    font-weight: 700;
+}
+
+.cell.solved {
+    color: var(--secondary);
+}
+
+.cell.invalid {
+    color: var(--accent);
+}
+
+/* Add thicker borders for 3x3 boxes */
+.border-right {
+    border-right: 2px solid var(--primary);
+}
+
+.border-bottom {
+    border-bottom: 2px solid var(--primary);
+}
+
+/* Number Pad */
+.number-pad {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 2rem;
+}
+
+.number-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--card-bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 0.25rem;
+    font-size: 1.25rem;
+    height: 3rem;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.number-button:hover {
+    background-color: var(--secondary);
+    color: white;
+}
+
+.number-button:active {
+    transform: scale(0.95);
+}
+
+.delete-button {
+    /* grid-column: span 2; */
+    grid-column: span 1;
+    color: var(--accent);
+}
+
+.delete-button:hover {
+    background-color: var(--accent);
+    color: white;
+}
+
+/* Control Panel */
+.control-panel,
+.sample-panel,
+.info-panel {
+    background-color: var(--card-bg);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px var(--box-shadow);
+}
+
+.control-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.control-button {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 0.25rem;
+    background-color: var(--card-bg);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.control-button:hover {
+    background-color: var(--secondary);
+    color: white;
+}
+
+.control-button.primary {
+    background-color: var(--primary);
+    color: white;
+}
+
+.control-button.primary:hover {
+    background-color: var(--secondary);
+}
+
+.control-button.secondary {
+    background-color: var(--secondary);
+    color: white;
+}
+
+.control-button i {
+    margin-right: 0.5rem;
+}
+
+.hint-text {
+    margin-bottom: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--text);
+}
+
+.difficulty-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+}
+
+.difficulty-button {
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 0.25rem;
+    background-color: var(--card-bg);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: background-color 0.2s;
+}
+
+.difficulty-button:hover {
+    background-color: var(--secondary);
+    color: white;
+}
+
+.instructions {
+    padding-left: 1.5rem;
+    font-size: 0.875rem;
+}
+
+.instructions li {
+    margin-bottom: 0.5rem;
+}
+
+/* Icon buttons */
+.icon-button {
+    background-color: transparent;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.icon-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.icon-button.small {
+    width: 2rem;
+    height: 2rem;
+    color: var(--text);
+    border: 1px solid var(--border);
+    background-color: var(--card-bg);
+}
+
+.icon-button.small:hover {
+    background-color: var(--secondary);
+    color: white;
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary);
+    color: white;
+    padding: 1rem 0;
+    margin-top: auto;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .footer-content {
+        flex-direction: row;
+    }
+}
+
+.footer-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+@media (min-width: 768px) {
+    .footer-links {
+        margin-top: 0;
+    }
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.modal h3 {
+    font-size: 1.1rem;
+    margin: 1rem 0 0.5rem;
+}
+
+.modal ul {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.modal li {
+    margin-bottom: 0.5rem;
+}
+
+/* Loading spinner */
+.spinner {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s linear infinite;
+    margin-right: 0.5rem;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 1024px) {
+    .content-container {
+        flex-direction: column;
+    }
+
+    .right-panel {
+        width: 100%;
+        /* max-width: 320px; */
+    }
+}
