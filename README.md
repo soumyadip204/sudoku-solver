@@ -2,9 +2,6 @@
 
 A modern, interactive web-based Sudoku solver with an intuitive interface for inputting and automatically solving puzzles. Built with HTML5, CSS3, and JavaScript for optimal performance and simplicity.
 
-![Sudoku Solver Screenshot](<img width="1281" height="949" alt="image" src="https://github.com/user-attachments/assets/db29fda1-d4ed-4846-b748-b6d7be2261fc" />
-)
-
 ## ✨ Features
 
 ### 🎮 Interactive Gameplay
@@ -32,7 +29,7 @@ A modern, interactive web-based Sudoku solver with an intuitive interface for in
 
 ## 🚀 Live Demo
 
-[View Live Demo](https://your-sudoku-solver.replit.app) *(Replace with your actual deployment URL)*
+[View Live Demo](https://soumyadip204.github.io/sudoku-solver/)
 
 ## 📱 Screenshots
 
@@ -47,59 +44,11 @@ A modern, interactive web-based Sudoku solver with an intuitive interface for in
 
 ## 🛠️ Technology Stack
 
-- **Frontend**: Vanilla HTML5, CSS3, JavaScript (ES6+)
+- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
 - **Styling**: CSS Grid, Flexbox, CSS Variables for theming
 - **Icons**: Font Awesome for UI icons
 - **Fonts**: Google Fonts (Roboto)
 - **No Framework Dependencies**: Pure JavaScript for optimal performance
-
-## 🏗️ Project Structure
-
-```
-sudoku-solver/
-├── index.html          # Main HTML file with UI structure
-├── styles.css          # Comprehensive styling with dark/light themes
-├── script.js           # Core JavaScript logic and algorithms
-├── README.md           # Project documentation
-└── generated-icon.png  # Project icon/logo
-```
-
-## 🔧 Installation & Setup
-
-### Quick Start
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/sudoku-solver.git
-   cd sudoku-solver
-   ```
-
-2. **Open in browser**
-   ```bash
-   # Option 1: Direct file opening
-   open index.html
-   
-   # Option 2: Using a local server (recommended)
-   python3 -m http.server 8000
-   # Then visit http://localhost:8000
-   ```
-
-### Development Setup
-If you want to run the full-stack version with the backend:
-
-1. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-2. **Start development server**
-   ```bash
-   npm run dev
-   ```
-
-3. **Open in browser**
-   ```
-   http://localhost:5000
-   ```
 
 ## 🎯 How to Use
 
@@ -143,38 +92,6 @@ The validation checks three Sudoku constraints:
 - **Worst Case**: O(9^(n²)) where n=9 for a 9×9 grid
 - **Average Case**: Much better due to constraint pruning
 - **Space Complexity**: O(n²) for the recursion stack
-
-## 🎨 Customization
-
-### Adding New Themes
-To add a new theme, define CSS variables in `styles.css`:
-
-```css
-.your-theme-name {
-    --primary: #your-primary-color;
-    --secondary: #your-secondary-color;
-    --background: #your-background-color;
-    /* ... other variables */
-}
-```
-
-### Adding New Puzzles
-Add puzzles to the `samplePuzzles` object in `script.js`:
-
-```javascript
-const samplePuzzles = {
-    yourDifficulty: [
-        [
-            [5, 3, 0, /* ... */],
-            [6, 0, 0, /* ... */],
-            // ... 9 rows total
-        ]
-    ]
-};
-```
-
-### Modifying UI Colors
-All colors are defined as CSS variables in `:root` and `.dark-theme` selectors, making customization straightforward.
 
 ## 🤝 Contributing
 
@@ -222,25 +139,17 @@ Contributions are welcome! Here's how you can help:
 - [ ] **Step-by-Step Solver**: Show solving steps and techniques
 - [ ] **Export/Import**: Share puzzles via URL or file
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 🙏 Acknowledgments
 
 - **Algorithm Inspiration**: Classic backtracking algorithm for constraint satisfaction problems
-- **UI Design**: Inspired by popular Sudoku apps like NYTimes Sudoku and Sudoku.com
-- **Icons**: [Font Awesome](https://fontawesome.com/) for beautiful, scalable icons
-- **Fonts**: [Google Fonts](https://fonts.google.com/) for typography
+- **UI Design**: Inspired by popular Sudoku apps
 
 ## 📞 Contact
 
-- **GitHub**: [@yourusername](https://github.com/yourusername)
-- **Email**: your.email@example.com
-- **LinkedIn**: [Your Name](https://linkedin.com/in/yourname)
+- **Email**: sahasoumyadip1802@gmail.com
 
 ---
 
 ⭐ **Star this repository if you found it helpful!**
 
-*Built with ❤️ using vanilla web technologies*
+*Built with ❤️*
