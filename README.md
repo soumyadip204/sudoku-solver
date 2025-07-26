@@ -31,17 +31,6 @@ A modern, interactive web-based Sudoku solver with an intuitive interface for in
 
 [View Live Demo](https://soumyadip204.github.io/sudoku-solver/)
 
-## 📱 Screenshots
-
-### Desktop View
-![Desktop Interface](screenshot-desktop.png) *(Add actual screenshot)*
-
-### Mobile View
-![Mobile Interface](screenshot-mobile.png) *(Add actual screenshot)*
-
-### Dark Theme
-![Dark Theme](screenshot-dark.png) *(Add actual screenshot)*
-
 ## 🛠️ Technology Stack
 
 - **Frontend**: HTML5, CSS3, JavaScript (ES6+)
